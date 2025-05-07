@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayyan Khokhar - Video Editor</title>
+  <style>
+      /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    /* Header/Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      background-image: url('./vd.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .hero-content p {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #4a6bff;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: #3a5bef;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+ 
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+
+      
+    }
+    
+    #heroVideo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-content p {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      margin-bottom: 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #4a6bff;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: #3a5bef;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Section Styling */
+    section {
+      padding: 5rem 2rem;
+    }
+    
+    section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: 3rem;
+      color: #222;
+      position: relative;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #4a6bff;
+    }
+    
+    /* Portfolio Section */
+    .portfolio {
+      background: #F7CAC9;
+    }
+    
+    .portfolio-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .video-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .video-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .video-item video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .video-info {
+      padding: 20px;
+      background: white;
+    }
+    
+    .video-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+    
+    .video-category {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #f0f4ff;
+      color: #4a6bff;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* Services Section */
+    .services {
+      background: #92A8D1;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    
+    .card p {
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+    
+    .price {
+      font-weight: bold;
+      color: #4a6bff;
+      font-size: 1.2rem;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      background-color: white;
+    }
+    
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card {
+      background: #f9f9f9;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+    
+    .client-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #4a6bff;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .client-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .testimonial-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .client-info {
+      text-align: center;
+    }
+    
+    .client-name {
+      font-weight: 700;
+      color: #222;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .client-role {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .rating {
+      color: #ffc107;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #222;
+      color: white;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .video-gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-content {
+        padding: 0 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .btn {
+        padding: 10px 20px;
+      }
+      
+      .video-item video {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="hero">
+    <div class="overlay"></div>
+    <video autoplay muted loop id="heroVideo">
+      <source src="videos/edit1.mp4" type="video/mp4" />
+      </video> 
+     <div class="hero-content">
+      <h1> I'm Ayyan Khokhar</h1>
+      <p>Professional Video Editor</p>
+      <a href="#portfolio" class="btn">View Portfolio</a>
+    </div>
+  </header>
+  <section id="portfolio" class="portfolio">
+    <h2>My Portfolio</h2>
+    <div class="portfolio-container">
+      <div class="video-gallery">
+        <div class="video-item">
+          <video src="videos/video1.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Golden Moments</h3>
+            <span class="video-category">Moments Edit</span>
+          </div>
+        </div>
+        <div class="video-item">
+          <video src="videos/video 2.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Trading's Clip</h3>
+            <span class="video-category">Trading Clip</span>
+          </div>
+        </div>
+        <div class="video-item">
+          <video src="videos/video 3.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Documentary Clip</h3>
+            <span class="video-category">Documentary</span>
+          </div>
+        </div>
+        <div class="video-item">
+          <video src="videos/video 4.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Game Short</h3>
+            <span class="video-category">Gaming</span>
+          </div>
+        </div>
+        <div class="video-item">
+          <video src="Videos/video 5.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Wedding Short</h3>
+            <span class="video-category">Wedding Video</span>
+          </div>
+        </div>
+        <div class="video-item">
+          <video src="Videos/video 6.mp4" controls></video>
+          <div class="video-info">
+            <h3 class="video-title">Video Shoots</h3>
+            <span class="video-category">Shoots</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Wedding Edits</h3>
+        <p>Beautiful cinematic wedding edits with color grading and romantic effects.</p>
+        <p class="price">Starting at $70</p>
+      </div>
+      <div class="card">
+        <h3>Gaming Highlights</h3>
+        <p>Fast-paced, dynamic gaming content with special effects and sound design.</p>
+        <p class="price">Starting at $80</p>
+      </div>
+      <div class="card">
+        <h3>Social Media Content</h3>
+        <p>Reels, Shorts, TikTok with trendy transitions and captions.</p>
+        <p class="price">Starting at $50</p>
+      </div>
+      <div class="card">
+        <h3>Corporate Videos</h3>
+        <p>Professional business presentations and promotional videos.</p>
+        <p class="price">Starting at $150</p>
+      </div>
+      <div class="card">
+        <h3>Music Videos</h3>
+        <p>Creative music video editing with visual effects and sync.</p>
+        <p class="price">Starting at $100</p>
+      </div>
+      <div class="card">
+        <h3>Documentary Edits</h3>
+        <p>Narrative-driven documentary editing with proper pacing.</p>
+        <p class="price">Starting at $170</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Client Testimonials</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <div class="client-photo">
+          <img src="wuserpic.png" alt="Sarah Johnson">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Ayyan transformed our wedding footage into a cinematic masterpiece. His attention to detail and creative transitions made all the difference!"</p>
+          <div class="client-info">
+            <span class="client-name">Sarah Johnson</span>
+            <span class="client-role">Wedding Client</span>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="client-photo">
+          <img src="umanpic.png" alt="Mike Roberts">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"My gaming channel's engagement doubled after Ayyan started editing my videos. His fast-paced cuts and effects are perfect for gaming content."</p>
+          <div class="client-info">
+            <span class="client-name">Mike Roberts</span>
+            <span class="client-role">Gaming YouTuber</span>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="client-photo">
+          <img src="wuserpic.png" alt="Aisha Khan">
+        </div>
+        <div class="testimonial-content">
+          <p class="testimonial-text">"Our Instagram reels edited by Ayyan went viral with over 500k views. He understands exactly what makes content shareable."</p>
+          <div class="client-info">
+            <span class="client-name">Aisha Khan</span>
+            <span class="client-role">Social Media Manager</span>
+            <div class="rating">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Ayyan Khokhar. All rights reserved.</p>
+  </footer>
+</body>
+</html>
